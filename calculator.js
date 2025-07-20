@@ -1,4 +1,4 @@
-const screen = document.querySelector(".screen")
+const screen = document.querySelector(".screen");
 
 let firstNumber = '';
 
