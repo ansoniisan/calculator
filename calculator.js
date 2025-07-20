@@ -128,17 +128,25 @@ const addButton = document.querySelector(".add");
 addButton.addEventListener("click", () => {
     operator = "+";
     copyFirstNumber = +firstNumber;
+    firstNumber = "";
     secondNumber = "";
     screen.textContent = "";
 })
 
 const subtractButton = document.querySelector(".subtract");
 subtractButton.addEventListener("click", () => {
+    if (copyFirstNumber && operator && secondNumber) {
+        secondNumber = +secondNumber;
+        result = operate(copyFirstNumber, operator, secondNumber);
+        screen.textContent = result;
+        secondNumber = "";
+    }
+    else {
     operator = "-";
     copyFirstNumber = +firstNumber;
     secondNumber = "";
     screen.textContent = "";
-
+    }
 })
 
 const multiplyButton = document.querySelector(".multiply");
@@ -172,8 +180,9 @@ equalsButton.addEventListener("click", () => {
         screen.textContent = "";
     }
     else {
-    result = operate(copyFirstNumber, operator, secondNumber);
-    firstNumber = result;
+    result = operate(copyFirstNumber, operator, secondNumber); //12 (copyFirstNumber) + 7 (secondNumber)= 19 (result)
+    console.log(result);
+    firstNumber = result; //firstNumber = 19, copyFirstNumber = 12
     secondNumber = ""
     };
 });
@@ -182,7 +191,9 @@ const clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", () => {
     screen.textContent = ""
     firstNumber = "";
+    copyFirstNumber = "";
     secondNumber = "";
+    operator = "";
     console.log(firstNumber);
     console.log(secondNumber);
 })
